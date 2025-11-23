@@ -1,552 +1,347 @@
 # StreamFlow: Autonomous API Marketplace for AI Agents
 
-> **Stripe for AI Agents** — A decentralized marketplace where autonomous agents discover and pay for APIs per-inference using x402 micropayments on Polygon.
+> **The First x402 Implementation on Polygon** — Enabling AI agents to autonomously discover and pay for APIs using Coinbase's x402 protocol on Polygon's payment-optimized infrastructure.
 
 [![ETH Global](https://img.shields.io/badge/ETH%20Global-Hackathon-blue)](https://ethglobal.com)
-[![Polygon](https://img.shields.io/badge/Polygon-Amoy%20Testnet-8247E5)](https://polygon.technology/)
+[![Polygon](https://img.shields.io/badge/Polygon-Native-8247E5)](https://polygon.technology/)
 [![Chainlink](https://img.shields.io/badge/Chainlink-CRE-375BD2)](https://chain.link/)
+[![Coinbase](https://img.shields.io/badge/Coinbase-CDP-0052FF)](https://coinbase.com/cloud)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+---
+
+## 🎯 One-Liner
+
+**"Stripe for AI Agents on Polygon — where autonomous agents pay per API call using x402 micropayments, settled in USDC on the world's leading payments blockchain."**
 
 ---
 
 ## 📋 Table of Contents
 
 - [Executive Summary](#executive-summary)
-- [The Problem](#the-problem)
-- [Our Solution](#our-solution)
+- [Why Polygon + x402?](#why-polygon--x402)
 - [User Personas](#user-personas)
 - [Core Features](#core-features)
 - [Technical Architecture](#technical-architecture)
-- [System Architecture](#system-architecture-diagram)
-- [Mock Services](#mock-llm-services)
-- [User Flows](#user-flows)
-- [Non-Functional Requirements](#non-functional-requirements)
-- [Out of Scope](#out-of-scope-post-hackathon)
-- [Risk Assessment](#risk-assessment)
-- [Judging Criteria](#judging-criteria-alignment)
-- [Demo Script](#demo-script)
-- [Getting Started](#getting-started)
+- [System Flow](#system-flow)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Judging Criteria Alignment](#judging-criteria-alignment)
+- [Demo](#demo)
 - [Contributing](#contributing)
 
 ---
 
 ## 🎯 Executive Summary
 
-### Vision
-Create the first decentralized marketplace where AI agents autonomously discover, consume, and pay for API services with zero human intervention using usage-based micropayments.
-
-### Problem
-The AI agent economy is bottlenecked by Web2 payment infrastructure:
-- 🚫 Agents can't manage API keys or credit cards
-- 💸 Fixed subscriptions waste money on variable usage
-- 🏢 Centralized platforms take 30% cuts
-- 🔍 No standardized way for agents to discover services
-
-### Solution
-StreamFlow combines **x402 protocol**, **Chainlink CRE**, and **Polygon** to enable:
-- ✅ Agent-to-agent commerce without human intervention
-- ✅ Pay-per-token pricing (e.g., $0.00001/token)
-- ✅ Decentralized usage verification
-- ✅ Open marketplace for any API provider
-
-### Success Metrics
-
-| Metric | Target |
-|--------|--------|
-| Transaction Latency | < 5 seconds |
-| Gas Cost per Payment | < $0.01 USD |
-| Provider Registration | < 5 minutes |
-| Agent Onboarding | Zero human steps |
-
----
-
-## 🔥 The Problem
+### The Problem
 
 AI agents are the future of software, but they're stuck in Web2 payment rails:
+- 🚫 Can't manage API keys or credit cards
+- 💸 Fixed subscriptions waste money on variable usage
+- 🏢 Centralized platforms take 30% cuts
+- 🔍 No way to autonomously discover services
 
-1. **Payment Friction**: Agents can't autonomously sign up for API keys or manage credit cards
-2. **Cost Unpredictability**: Fixed OpenAI subscriptions waste money; agents have variable usage
-3. **Vendor Lock-in**: Hard to switch between providers (Anthropic, Cohere, local models)
-4. **Distribution Bottleneck**: Specialized AI models can't reach agent developers
-5. **High CAC**: API providers need sales teams to onboard each customer
-
-**Market Opportunity**: The AI agent economy is projected to be worth trillions, but lacks the payment infrastructure to function autonomously.
+**Market Gap**: The AI agent economy needs decentralized, usage-based payment infrastructure.
 
 ---
 
-## 💡 Our Solution
+### Our Solution
 
-### The StreamFlow Approach
+**StreamFlow** implements Coinbase's **x402 payment protocol on Polygon**, enabling:
 
-```
-TRADITIONAL MODEL                  STREAMFLOW MODEL
-────────────────                   ────────────────
-💳 $50/month fixed                 💰 $2.40 actual usage
-🔒 Single provider                 🌐 10+ providers
-👤 Human API key mgmt              🤖 Autonomous discovery
-📊 No usage visibility             📈 Real-time analytics
-```
+✅ **Agent-to-Agent Commerce**: Zero human intervention  
+✅ **Pay-Per-Token Pricing**: As low as $0.00001/token  
+✅ **Decentralized Verification**: Chainlink CRE prevents fraud  
+✅ **Open Marketplace**: Any API provider can monetize  
+✅ **Polygon Settlement**: Leverage $3.6B stablecoin liquidity
 
-### How It Works
+---
 
-1. **Discover**: Agent queries The Graph for available APIs (LLMs, data services)
-2. **Authorize**: One-time x402 spending approval (no recurring charges)
-3. **Consume**: Agent calls API with automatic micropayment per token
-4. **Verify**: Chainlink CRE validates actual usage off-chain
-5. **Settle**: Polygon processes instant USDC payment to provider
+### Key Innovation
+
+> "StreamFlow proves x402 is a truly open protocol by implementing it on Polygon, demonstrating how Coinbase's payment standard can enable the AI agent economy across any EVM chain while leveraging Polygon's payment-optimized infrastructure."
+
+**Technical Achievement:**
+- First x402 marketplace implementation
+- First x402 deployment on Polygon
+- First AI agent payment system with CRE verification
+
+---
+
+## 🌟 Why Polygon + x402?
+
+### The Perfect Match
+
+| Requirement | Polygon Solution | x402 Solution |
+|------------|------------------|---------------|
+| **High Transaction Volume** | 5,000 TPS (Rio upgrade) | HTTP-native (no blockchain bloat) |
+| **Low Costs** | ~$0.005/tx | Micropayments viable |
+| **Stablecoin Liquidity** | $3.6B USDC/USDT | Native USDC support |
+| **Agent-Friendly** | Fast finality (5 sec) | No API keys required |
+| **Payment Leader** | Stripe, Mastercard partners | Open payment standard |
+
+**Result**: AI agents can make thousands of micro-payments daily at costs lower than traditional payment processors.
 
 ---
 
 ## 👥 User Personas
 
-### Persona 1: "Maya" - The Agent Builder (Demand Side)
+### Persona 1: "Maya" - The Agent Builder
 
-**Profile:**
-- Founder of AI automation startup building autonomous agents
-- Needs agents to consume various LLM services without manual intervention
+**Profile**: Founder building autonomous customer service agents
 
-**Pain Points:**
-- Agents can't manage API keys or credit cards
-- Fixed subscriptions waste money on variable usage
-- Managing 10+ agents across multiple providers is complex
+**Current Pain**:
+- Agents need to consume multiple LLM APIs
+- OpenAI charges $20/month even if agents use $2
+- Can't switch providers without rewriting code
 
-**Job-to-be-Done:**
-> "I want my customer service agent to automatically use GPT-4 for complex queries and a cheaper model for simple ones, reducing costs by 40%."
+**StreamFlow Solution**:
+```python
+# Agent automatically selects cheapest provider
+cheapest_api = await marketplace.query(model_type="general")
+response = await agent.call_api(cheapest_api, prompt="...")
+# Pays $0.0045 (150 tokens × $0.00003) instead of $20/month
+```
 
-**Success Metric**: Cost per agent task drops 40% through dynamic provider selection
+**Impact**: 98% cost reduction through usage-based pricing
 
 ---
 
-### Persona 2: "Raj" - The AI API Provider (Supply Side)
+### Persona 2: "Raj" - The AI API Provider
 
-**Profile:**
-- ML engineer with a fine-tuned LLM (e.g., legal document analysis)
-- Struggling to monetize against OpenAI's brand recognition
+**Profile**: ML engineer with fine-tuned legal analysis model
 
-**Pain Points:**
-- Can't compete on distribution with big players
-- Stripe integration requires KYC, chargebacks, subscription overhead
+**Current Pain**:
+- Can't compete with OpenAI's distribution
+- Stripe takes 2.9% + $0.30 per transaction
 - Model sits idle 80% of the time
 
-**Job-to-be-Done:**
-> "I want agents to discover my legal-specialized LLM and pay per token, so I earn revenue without managing subscriptions."
-
-**Success Metric**: Monthly revenue from 1,000 micro-transactions beats previous 5-customer enterprise model
-
----
-
-### Market Dynamics (Two-Sided Marketplace)
-
-```
-SUPPLY SIDE                     STREAMFLOW              DEMAND SIDE
-───────────                     ──────────              ───────────
-
-Specialized LLMs    ←─────→    Marketplace    ←─────→  Autonomous Agents
-Fine-tuned Models              Discovery               Multi-Agent Systems  
-Local Hosting                  x402 Payments           AI Workflows
-Niche APIs                     Metering                Research Bots
-                               Analytics               Customer Service
+**StreamFlow Solution**:
+```solidity
+// Register API in marketplace
+marketplace.registerService(
+    endpoint="https://legal-ai.com/api",
+    pricePerToken=0.00005 * 1e6  // $0.00005 USDC
+);
+// Earn $0.005 per request, settled instantly on Polygon
 ```
 
-**Network Effects:**
-- More providers → Better selection → More agents
-- More agents → Higher revenue → More providers
+**Impact**: Earn from 1,000 micro-transactions vs 5 enterprise customers
 
 ---
 
 ## ⚡ Core Features
 
-### 4.1 API Marketplace Registry
+### 1. x402 Protocol on Polygon
 
-**Description**: On-chain registry of available services
+**What**: HTTP-native payment protocol adapted for Polygon's ecosystem
 
-**Key Capabilities:**
-- Providers register with pricing and capability metadata
-- Agents query via GraphQL (The Graph)
-- Filter by price, model type, latency
-- Reputation system (future)
+**How It Works**:
+```http
+POST /api/v1/generate HTTP/1.1
+Host: api.streamflow.xyz
+Content-Type: application/json
+X-Payment-Auth: polygon-0x742d35Cc...
 
-**Smart Contract Structure:**
-```solidity
-struct APIService {
-    address provider;
-    string endpoint;
-    uint256 pricePerToken; // in USDC (6 decimals)
-    string modelType; // "gpt-4", "llama-2", "custom"
-    bool isActive;
-}
+HTTP/1.1 402 Payment Required
+X-Payment-Required: 0.003 USDC
+X-Payment-Address: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e
+
+[Agent pays via CDP wallet]
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-Tokens-Used: 150
+X-Cost-USDC: 0.0045
+
+{"text": "Quantum computing uses..."}
 ```
+
+**Innovation**: First x402 implementation showing protocol extensibility beyond Base
 
 ---
 
-### 4.2 Pay-Per-Inference Engine
+### 2. CDP Server Wallets for Agents
 
-**Description**: Core payment flow integrating x402 + CRE
+**What**: Production-grade wallets with <200ms signing latency
 
-**Payment Flow:**
+**Agent Onboarding**:
+```typescript
+import { Coinbase } from "@coinbase/coinbase-sdk";
+
+// Create wallet on Polygon (zero human steps)
+const wallet = await Coinbase.createWallet({
+  networkId: "polygon-amoy"
+});
+
+// Set spending policy
+await wallet.setPolicy({
+  maxAmountPerTx: "10_000000", // 10 USDC
+  allowedRecipients: [providerAddress]
+});
 ```
-1. Agent → API: POST /inference + x402 auth header
-2. API → CRE: Request pre-authorization check
-3. API → Agent: Inference response + token count
-4. CRE → Polygon: settleBill(tokenCount * pricePerToken)
-5. Provider receives USDC instantly
-```
 
-**Key Innovation**: No gas costs for monitoring; only settlement transactions hit the blockchain.
+**Why Not Regular Wallets?**
+- No seed phrases to manage
+- Sub-200ms transaction signing
+- Built-in policy controls
+- 99.9% uptime SLA
 
 ---
 
-### 4.3 Chainlink CRE Integration
+### 3. Chainlink CRE Verification
 
-**Description**: Decentralized usage verification preventing fraud
+**What**: Off-chain computation that prevents usage fraud
 
-**Workflows (TypeScript):**
+**The Problem**: How do you trust API providers report accurate usage?
 
-**A. Usage Monitor**
-- Polls API usage logs every 30 seconds
-- Aggregates by agent address + provider
-- Validates against on-chain pre-authorizations
-
-**B. Billing Calculator**
-- `totalCost = tokenCount * pricePerToken`
-- Applies volume discounts (future)
-- Generates cryptographically signed transaction
-
-**C. Settlement Trigger**
-- Calls x402 contract with CRE attestation
-- Prevents disputes through multi-node verification
-
----
-
-### 4.4 x402 Smart Contract
-
-**Description**: HTTP-native payment protocol implementation
-
-**Key Functions:**
-```solidity
-// Agent pre-authorizes spending limit
-function authorize(address provider, uint256 maxAmount) external;
-
-// CRE triggers settlement after usage
-function processPayment(
-    address agent,
-    address provider, 
-    uint256 amount,
-    bytes calldata creProof
-) external onlyCRE;
-
-// Provider withdraws earnings
-function withdraw() external;
+**The Solution**:
+```
+1. API logs usage: "Agent_123 used 150 tokens"
+2. CRE polls logs from multiple nodes (decentralized)
+3. CRE calculates: 150 × $0.00003 = $0.0045 USDC
+4. CRE triggers Polygon settlement with proof
+5. Only verified payments settle on-chain
 ```
 
-**Security Features:**
-- Rate limiting per agent
-- Maximum per-transaction caps
-- Emergency pause mechanism
-- Fraud detection hooks
+**Gas Savings**: $0.001 (CRE) vs $0.05+ (on-chain verification)
 
 ---
 
-### 4.5 The Graph Analytics
+### 4. The Graph Analytics
 
-**Description**: Real-time usage and revenue dashboards
+**What**: Real-time dashboards querying Polygon events
 
-**Subgraph Schema:**
+**Provider Dashboard**:
 ```graphql
-type Payment @entity {
-  id: ID!
-  agent: Bytes!
-  provider: Bytes!
-  amount: BigInt!
-  tokenCount: BigInt!
-  timestamp: BigInt!
-  apiService: String!
-}
-
-type ProviderStats @entity {
-  id: ID!
-  totalRevenue: BigInt!
-  totalTokensServed: BigInt!
-  uniqueAgents: Int!
+query ProviderRevenue {
+  providerStats(id: "0x742d35Cc...") {
+    totalRevenue
+    totalTokensServed
+    uniqueAgents
+    revenueByDay {
+      date
+      amount
+    }
+  }
 }
 ```
 
-**Dashboard Views:**
-- **Provider**: Revenue/day, top-consuming agents, token efficiency
-- **Agent**: Spend/day, provider comparison, cost predictions
+**Agent Dashboard**:
+- Spending by provider
+- Cost per request trends
+- Savings vs subscriptions
+
+---
+
+### 5. Open API Marketplace
+
+**What**: Permissionless registry on Polygon
+
+**Any Provider Can**:
+1. Deploy their API endpoint
+2. Register in smart contract ($0.005 gas)
+3. Start earning USDC in minutes
+
+**Any Agent Can**:
+1. Query The Graph for services
+2. Authorize spending once
+3. Pay per actual usage
+
+**Network Effect**: More providers → Better prices → More agents → More providers
 
 ---
 
 ## 🏗️ Technical Architecture
 
-### Tech Stack
+### Tech Stack (All Polygon-Native)
 
-| Layer | Technology | Justification |
-|-------|-----------|---------------|
-| **Frontend** | React + ethers.js | Fast prototyping, Web3 standard |
-| **Marketplace API** | Python FastAPI | Auto-generated OpenAPI docs |
-| **Mock LLM Services** | Python (2 endpoints) | Easy text processing simulation |
-| **CRE Workflows** | TypeScript | Native CRE support, typed Web3 |
-| **Smart Contracts** | Solidity 0.8.20 | x402 compatibility |
-| **Blockchain** | Polygon Amoy (testnet) | Low gas, fast finality |
-| **Indexing** | The Graph (Subgraph Studio) | Real-time queries |
-| **Wallets** | CDP Server Wallets | Agent-friendly, no seed phrases |
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Settlement** | Polygon PoS (Amoy) | All payments settle here |
+| **Payment Protocol** | x402 (Custom) | HTTP-native authorization |
+| **Agent Wallets** | CDP Server Wallets | Sub-200ms signing |
+| **Off-chain Compute** | Chainlink CRE | Usage verification |
+| **Backend** | Python FastAPI | Marketplace + routing |
+| **Mock Services** | Python | 2 LLM endpoints (demo) |
+| **Indexing** | The Graph | Real-time queries |
+| **Frontend** | React + ethers.js | Provider/agent dashboards |
+| **Agent Framework** | AgentKit (Python) | Autonomous logic |
 
 ---
 
-## 📐 System Architecture Diagram
+## 📐 System Flow
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    AGENT LAYER (Consumers)                   │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │ Research Bot │  │ Customer AI  │  │ Analyst Bot  │      │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘      │
-└─────────┼──────────────────┼──────────────────┼─────────────┘
-          │                  │                  │
-          └──────────────────┼──────────────────┘
-                             │ (HTTP + x402 headers)
-          ┌──────────────────▼──────────────────┐
-          │   API MARKETPLACE (FastAPI)         │
-          │  - Service Discovery                │
-          │  - Request Routing                  │
-          │  - Usage Logging                    │
-          └──────────┬─────────────┬────────────┘
-                     │             │
-          ┌──────────▼──────┐  ┌──▼─────────────┐
-          │ Mock LLM 1      │  │ Mock LLM 2     │
-          │ (GPT-4 style)   │  │ (Legal spec.)  │
-          │ $0.00003/token  │  │ $0.00005/token │
-          └─────────────────┘  └────────────────┘
-                     │
-          ┌──────────▼────────────────────────────┐
-          │   CHAINLINK CRE (Workflows)           │
-          │  ┌────────────┐  ┌─────────────────┐ │
-          │  │  Monitor   │→ │ Bill Calculator │ │
-          │  └────────────┘  └────────┬────────┘ │
-          │                           │           │
-          │                  ┌────────▼────────┐  │
-          │                  │ Settle Trigger  │  │
-          │                  └────────┬────────┘  │
-          └───────────────────────────┼───────────┘
-                                      │ (signed tx)
-          ┌───────────────────────────▼───────────┐
-          │   POLYGON AMOY (Settlement)           │
-          │  ┌─────────────────────────────────┐  │
-          │  │  x402 Smart Contract            │  │
-          │  │  - authorize()                  │  │
-          │  │  - processPayment()             │  │
-          │  │  - withdraw()                   │  │
-          │  └─────────────┬───────────────────┘  │
-          │                │ (emits events)       │
-          └────────────────┼──────────────────────┘
-                           │
-          ┌────────────────▼──────────────────────┐
-          │   THE GRAPH (Indexing)                │
-          │  - PaymentSettled events              │
-          │  - Provider revenue aggregation       │
-          │  - Agent spending analytics           │
-          └───────────────────────────────────────┘
+│                 STREAMFLOW ON POLYGON                        │
+└─────────────────────────────────────────────────────────────┘
+
+1. AGENT CREATION (CDP Server Wallets)
+   ↓
+   Wallet created on Polygon in <3 seconds
+   Pre-funded with USDC from faucet
+
+2. SERVICE DISCOVERY (The Graph)
+   ↓
+   Agent queries: "What LLMs are available?"
+   Graph returns: GeneralGPT ($0.00003/token), LegalAI ($0.00005/token)
+
+3. AUTHORIZATION (x402 on Polygon)
+   ↓
+   Agent approves $10 USDC spending to GeneralGPT provider
+   Transaction settles on Polygon (~5 seconds)
+
+4. API CALL (HTTP + x402 Headers)
+   ↓
+   POST /api/v1/generate
+   Headers: X-Payment-Auth, X-Agent-Address
+   Body: {"prompt": "Explain quantum computing"}
+
+5. USAGE LOGGING (FastAPI Middleware)
+   ↓
+   API processes request → logs 150 tokens used
+   Returns response + cost breakdown
+
+6. VERIFICATION (Chainlink CRE)
+   ↓
+   CRE polls usage logs (every 30s)
+   Multi-node consensus: "150 tokens confirmed"
+   Calculates: 150 × $0.00003 = $0.0045 USDC
+
+7. SETTLEMENT (Polygon Smart Contract)
+   ↓
+   CRE triggers: x402Contract.processPayment(agent, provider, 0.0045)
+   USDC transfers on Polygon
+   Event emitted: PaymentProcessed
+
+8. ANALYTICS (The Graph)
+   ↓
+   Subgraph indexes PaymentProcessed event
+   Dashboard updates in real-time
+   Provider sees: +$0.0045 revenue
+   Agent sees: -$0.0045 spent
+
+9. WITHDRAWAL (Provider Action)
+   ↓
+   Provider calls: x402Contract.withdraw()
+   USDC sent to provider's CDP wallet on Polygon
 ```
 
----
-
-## 🧪 Mock LLM Services
-
-### Service 1: "General GPT"
-- **Model Type**: Generic text generation
-- **Pricing**: $0.00003/token (~$0.03 per 1K tokens)
-- **Endpoint**: `POST /api/v1/generate`
-- **Response Time**: 2-3 seconds
-
-### Service 2: "LegalAI Specialist"
-- **Model Type**: Legal document analysis
-- **Pricing**: $0.00005/token (premium for specialization)
-- **Endpoint**: `POST /api/v1/legal/analyze`
-- **Response Time**: 3-4 seconds
-
-**Note**: Both use mocked responses (not real LLMs) to demonstrate payment flow without GPU infrastructure costs.
+**Every step happens on Polygon** ✅
 
 ---
 
-## 🔄 User Flows
-
-### Flow 1: Provider Onboarding (Raj)
-
-```
-1. Connect wallet (CDP Wallet)
-2. Navigate to "Register API" page
-3. Input:
-   - API endpoint URL
-   - Price per token (USDC)
-   - Model description
-4. Approve transaction (~$0.01 gas)
-5. API appears in marketplace within 30 seconds
-```
-
----
-
-### Flow 2: Agent Consumption (Maya's Bot)
-
-```python
-# 1. Agent queries marketplace
-services = graph_client.query("""
-  {
-    apiServices(where: {modelType: "general"}) {
-      provider
-      endpoint
-      pricePerToken
-    }
-  }
-""")
-
-# 2. Select cheapest option
-cheapest = min(services, key=lambda x: x['pricePerToken'])
-
-# 3. Authorize spending (one-time per provider)
-x402_contract.authorize(
-    provider_address=cheapest['provider'],
-    max_amount=10_000000  # 10 USDC
-)
-
-# 4. Make inference request
-response = requests.post(
-    cheapest['endpoint'],
-    headers={
-        "x-payment-auth": generate_x402_token(),
-        "x-agent-address": agent_wallet.address
-    },
-    json={"prompt": "Explain quantum computing"}
-)
-
-# 5. Receive response with cost breakdown
-{
-  "text": "Quantum computing uses qubits...",
-  "tokens_used": 150,
-  "cost_usdc": "0.0045"
-}
-
-# 6. CRE workflow (background):
-#    - Polls usage log
-#    - Calculates: 150 * 0.00003 = 0.0045 USDC
-#    - Calls processPayment()
-#    - Settlement completes in ~5 seconds
-```
-
----
-
-## ⚙️ Non-Functional Requirements
-
-### Performance
-- **API Response Time**: < 5 seconds (95th percentile)
-- **Payment Settlement**: < 10 seconds (CRE + Polygon)
-- **Marketplace Query**: < 500ms (The Graph)
-
-### Scalability
-- Support 100 concurrent agent requests (hackathon)
-- Handle 1,000 transactions/day (demo)
-- Design for 100K TPS (production roadmap)
-
-### Security
-- x402 authorization replay protection
-- CRE multi-node verification (3+ nodes)
-- Rate limiting: 100 requests/minute per agent
-- Emergency pause function in contracts
-
----
-
-## 🚫 Out of Scope (Post-Hackathon)
-
-- ❌ Real LLM hosting (using mocks for demo)
-- ❌ Fraud detection ML models
-- ❌ Provider reputation system
-- ❌ Batch payment optimization
-- ❌ Privacy features (zkProofs for usage)
-- ❌ Multi-chain support (Base, Optimism)
-- ❌ Agent SDK (Python/TypeScript libraries)
-- ❌ Mobile app
-
----
-
-## ⚠️ Risk Assessment
-
-| Risk | Impact | Mitigation |
-|------|--------|-----------|
-| CRE testnet downtime | High | Fallback: manual settlement button |
-| x402 spec changes | Medium | Lock to specific repo commit |
-| The Graph indexing delays | Low | Show "pending" state in UI |
-| Gas price spike | Low | Use gasless transactions (relayer) |
-| CDP wallet rate limits | Medium | Implement request queuing |
-
----
-
-## 🏆 Judging Criteria Alignment
-
-### Polygon Prize
-✅ **Innovative x402 use case**: First agentic marketplace  
-✅ **High transaction potential**: Every agent call = payment  
-✅ **Not gambling/DeFi**: Pure utility (API payments)  
-✅ **Merchant utility**: Enables new monetization models
-
-### Coinbase Prize
-✅ **CDP Server Wallets**: Agents use autonomous wallets  
-✅ **x402 integration**: Core payment mechanism  
-✅ **Multiple products**: Wallets + x402 + potential Trade API  
-✅ **High-quality implementation**: Production-ready architecture
-
-### Chainlink Prize
-✅ **CRE core functionality**: Off-chain usage verification  
-✅ **Novel use case**: First CRE + x402 integration  
-✅ **Production-ready**: Scalable, secure design  
-✅ **Real-world problem**: Solves AI agent payment bottleneck
-
-### The Graph Prize
-✅ **Real-time analytics**: Provider/agent dashboards  
-✅ **Complex queries**: Revenue aggregation, usage trends  
-✅ **Essential to UX**: Discovery + transparency  
-✅ **Novel schema**: Multi-entity relationships
-
----
-
-## 🎬 Demo Script (5 Minutes)
-
-**Minute 1: Problem** (30s)
-- "AI agents can't autonomously pay for APIs"
-- Show broken flow: Agent → Manual API key → Human payment
-
-**Minute 2: Solution** (30s)
-- Show architecture diagram
-- Explain 4 layers: Agent → CRE → x402 → The Graph
-
-**Minutes 3-4: Live Demo** (2 min)
-1. Register new API as provider (20s)
-2. Run agent consuming API (30s)
-3. Show payment settlement on PolygonScan (20s)
-4. Display analytics dashboard (30s)
-5. Cost comparison: $50/month subscription vs $2.40 actual usage (20s)
-
-**Minute 5: Impact** (1 min)
-- "This unlocks the trillion-dollar agent economy"
-- Show network effects: More providers → More agents → More providers
-- Call to action: "Try it at streamflow.xyz"
-
----
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
+
 ```bash
-# Node.js 18+
-node --version
-
-# Python 3.10+
-python --version
-
-# Foundry (for Solidity)
-forge --version
-
-# Graph CLI
-graph --version
+node --version    # v18+
+python --version  # 3.10+
+forge --version   # Foundry for Solidity
+gh --version      # GitHub CLI
 ```
 
 ### Installation
@@ -560,38 +355,47 @@ cd streamflow
 npm install
 pip install -r requirements.txt
 
-# Set up environment
+# Configure environment
 cp .env.example .env
-# Edit .env with your API keys
+# Add your API keys:
+# - CDP_API_KEY_NAME
+# - CDP_API_KEY_SECRET
+# - POLYGON_RPC_URL (https://rpc-amoy.polygon.technology)
+# - GRAPH_API_KEY
 ```
 
-### Quick Start
+### Deploy Contracts (Polygon Amoy)
 
 ```bash
-# Terminal 1: Start local blockchain
-npx hardhat node
-
-# Terminal 2: Deploy contracts
-npm run deploy:local
-
-# Terminal 3: Start marketplace API
-cd backend && uvicorn main:app --reload
-
-# Terminal 4: Start frontend
-cd frontend && npm start
+cd contracts
+forge build
+forge script script/Deploy.s.sol:DeployScript \
+  --rpc-url $POLYGON_RPC_URL \
+  --broadcast \
+  --verify
 ```
 
-### Testing
+### Start Backend
 
 ```bash
-# Smart contract tests
-npm run test:contracts
+cd backend
+uvicorn main:app --reload --port 8000
+```
 
-# Backend tests
-pytest backend/tests/
+### Start Frontend
 
-# Integration tests
-npm run test:e2e
+```bash
+cd frontend
+npm start
+```
+
+### Test the Flow
+
+```bash
+# Terminal 1: Backend running
+# Terminal 2: Run agent test
+cd tests
+python test_agent_flow.py
 ```
 
 ---
@@ -601,81 +405,204 @@ npm run test:e2e
 ```
 streamflow/
 ├── contracts/              # Solidity smart contracts
-│   ├── x402Payment.sol    # Main payment contract
-│   ├── ServiceRegistry.sol # API marketplace registry
-│   └── test/              # Contract tests
-├── cre-workflows/         # Chainlink CRE TypeScript
-│   ├── usage-monitor.ts
-│   ├── billing-calculator.ts
-│   └── settlement-trigger.ts
+│   ├── src/
+│   │   ├── X402Payment.sol        # Main payment contract
+│   │   ├── ServiceRegistry.sol    # API marketplace
+│   │   └── interfaces/
+│   │       └── IX402.sol          # x402 interface
+│   ├── test/              # Foundry tests
+│   └── script/            # Deployment scripts
+│
+├── cre-workflows/         # Chainlink CRE (TypeScript)
+│   ├── src/
+│   │   ├── usage-monitor.ts       # Polls API usage
+│   │   ├── billing-calculator.ts  # Computes costs
+│   │   └── settlement-trigger.ts  # Triggers Polygon tx
+│   └── test/
+│
 ├── backend/               # Python FastAPI
 │   ├── main.py           # Marketplace API
-│   ├── services/         # Mock LLM endpoints
-│   └── middleware/       # x402 validation
+│   ├── services/
+│   │   ├── general_gpt.py        # Mock LLM 1
+│   │   └── legal_ai.py           # Mock LLM 2
+│   ├── middleware/
+│   │   └── x402_auth.py          # Payment validation
+│   └── tests/
+│
 ├── subgraph/             # The Graph indexing
-│   ├── schema.graphql
-│   └── mappings/
+│   ├── schema.graphql    # Entity definitions
+│   ├── subgraph.yaml     # Configuration
+│   └── src/
+│       └── mapping.ts    # Event handlers
+│
 ├── frontend/             # React dashboard
 │   ├── src/
 │   │   ├── pages/
+│   │   │   ├── ProviderDashboard.tsx
+│   │   │   └── AgentDashboard.tsx
 │   │   └── components/
+│   │       ├── WalletConnect.tsx
+│   │       └── PaymentHistory.tsx
 │   └── public/
-├── scripts/              # Deployment scripts
-└── docs/                 # Additional documentation
+│
+├── scripts/              # Utility scripts
+│   ├── fund-wallets.ts   # USDC faucet helper
+│   └── deploy-all.sh     # One-command deployment
+│
+└── docs/                 # Documentation
+    ├── ARCHITECTURE.md
+    ├── API.md
+    └── DEPLOYMENT.md
 ```
+
+---
+
+## 🏆 Judging Criteria Alignment
+
+### Polygon Prize ✅
+
+**Category 1: x402 + AI/Agentic Application**
+- ✅ x402 protocol deployed on Polygon
+- ✅ AI agents autonomously consume APIs
+- ✅ All settlements on Polygon network
+- ✅ High transaction volume potential
+
+**Category 2: x402 Protocol Expansion**
+- ✅ Adapts x402 for Polygon ecosystem
+- ✅ Shows protocol extensibility beyond Base
+- ✅ Custom facilitator logic for Polygon's stablecoin infrastructure
+
+**Category 3: Payment Flows**
+- ✅ Merchant application (API providers)
+- ✅ Payment processing middleware
+- ✅ Brings transaction count up (agent-driven volume)
+
+**Why We Win**: First x402 implementation on Polygon proving the protocol works across any EVM chain
+
+---
+
+### Coinbase Prize ✅
+
+**Core Requirements**:
+- ✅ CDP Server Wallets (agents + providers)
+- ✅ x402 protocol implementation
+- ✅ AgentKit integration (Python SDK)
+
+**Bonus Points**:
+- ✅ Using 3+ CDP products
+- ✅ Novel x402 use case (marketplace)
+- ✅ High-quality implementation
+- ✅ Demonstrates protocol extensibility
+
+**Why We Win**: Proves x402 is a truly open standard by implementing on non-Base chain
+
+---
+
+### Chainlink Prize ✅
+
+**Core Functionality**:
+- ✅ CRE workflows for off-chain computation
+- ✅ Decentralized usage verification
+- ✅ Novel integration (CRE + x402)
+
+**Why We Win**: First project combining CRE with x402 payments
+
+---
+
+### The Graph Prize ✅
+
+**Requirements**:
+- ✅ Real-time analytics dashboards
+- ✅ Complex queries (revenue aggregation)
+- ✅ Essential to UX (service discovery)
+
+**Why We Win**: Subgraph enables the entire marketplace discovery mechanism
+
+---
+
+## 🎬 Demo (5 Minutes)
+
+### Live Demo Flow
+
+**1. Provider Registration (30s)**
+```bash
+# Connect CDP wallet
+# Register "LegalAI" at $0.00005/token
+# Show Polygon transaction: polygonscan.com/tx/0x...
+```
+
+**2. Agent Discovery (30s)**
+```graphql
+# Query The Graph
+{ apiServices { endpoint, pricePerToken } }
+# Agent selects cheapest option
+```
+
+**3. Automated Payment (1 min)**
+```python
+# Agent authorizes $10 USDC
+# Makes API call → 402 response → pays → 200 response
+# CRE settles on Polygon
+# Show transaction on PolygonScan
+```
+
+**4. Analytics Dashboard (1 min)**
+```
+Provider view: +$0.0045 revenue (real-time)
+Agent view: Cost comparison (saved 40%)
+```
+
+**5. Impact Slide (30s)**
+- First x402 on Polygon
+- 98% cheaper than Stripe
+- Unlocks $X trillion agent economy
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ### Development Workflow
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+```bash
+git checkout -b feature/amazing-feature
+git commit -m 'Add amazing feature'
+git push origin feature/amazing-feature
+```
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
+MIT License - see [LICENSE](LICENSE)
 
 ---
 
 ## 🔗 Links
 
-- **Live Demo**: [streamflow.xyz](https://streamflow.xyz) (coming soon)
-- **Documentation**: [docs.streamflow.xyz](https://docs.streamflow.xyz)
+- **Demo**: [streamflow-demo.vercel.app](https://streamflow-demo.vercel.app) (coming soon)
+- **Contracts**: [Polygon Amoy Explorer](https://amoy.polygonscan.com)
+- **Subgraph**: [The Graph Studio](https://thegraph.com/studio)
 - **Twitter**: [@StreamFlowAI](https://twitter.com/StreamFlowAI)
-- **Discord**: [Join our community](https://discord.gg/streamflow)
 
 ---
 
 ## 🙏 Acknowledgments
 
-Built with amazing tools from:
-- [Polygon](https://polygon.technology/) - Scalable blockchain infrastructure
-- [Coinbase](https://www.coinbase.com/cloud) - CDP Wallets & x402 protocol
-- [Chainlink](https://chain.link/) - CRE decentralized computation
-- [The Graph](https://thegraph.com/) - Blockchain indexing
+Built with:
+- [Polygon](https://polygon.technology/) - Payment-optimized blockchain
+- [Coinbase CDP](https://coinbase.com/cloud) - Server Wallets & x402 protocol
+- [Chainlink](https://chain.link/) - CRE off-chain compute
+- [The Graph](https://thegraph.com/) - Decentralized indexing
 
-Special thanks to ETH Global and all the DevRel teams for their support!
-
----
-
-## 📧 Contact
-
-**Team StreamFlow**
-- Email: team@streamflow.xyz
-- Telegram: @streamflow_support
+Special thanks to ETH Global and all DevRel teams!
 
 ---
 
 <div align="center">
   <strong>Built at ETH Global 2025 🚀</strong>
   <br />
-  <em>Empowering the autonomous agent economy, one inference at a time.</em>
+  <em>The first x402 implementation on Polygon</em>
+  <br />
+  <em>Empowering the autonomous agent economy</em>
 </div>
